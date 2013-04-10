@@ -1,0 +1,84 @@
+body
+{
+    background: url('../_img/wb.gif') repeat fixed;
+}
+#body_upper
+{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    
+}
+
+#reg_back
+{
+    margin: 10px auto;
+    height: 964px;
+    width: 760px;
+    background: url('../_img/reg_back.png');
+    border-radius: 10px;
+}
+
+#body_upper:hover
+{
+    
+}
+
+.box
+{
+    background-color: #e9f4f6;
+    text-align: center;
+    font-family: monospace;
+    border: groove 1px #999999;
+    color: #3399ff;
+    border-radius: 5px;
+       
+}
+.box:focus
+{
+    color: #0000cc;
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+
+    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+.blue 
+{
+    color: #19667d;
+    background: #70c9e3;
+}
+
+.notification
+{
+    position: fixed;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: 20px;
+    right: 20px;
+    border-radius: 10px;
+    font-family: monospace;
+    background: url('../_img/black.png') repeat;
+}

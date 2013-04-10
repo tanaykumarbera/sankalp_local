@@ -1,0 +1,131 @@
+.btn
+{
+    background-color: #b0b1b1;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+ 
+}
+.btn:active
+{
+    background-color: #b0b1b1;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.btn:hover
+{
+    background-color: #444647;
+    color: white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.logout
+{
+    background: url('../_img/lg.png') center no-repeat;
+    height: 30px;
+    width: 30px;
+    position: fixed;
+    bottom: 3px;
+    left: 3px;
+}
+
+.logout:hover
+{
+   background: url('../_img/lgh.png') center no-repeat; 
+}
+
+.logout:active
+{
+    background: url('../_img/lg.png') center no-repeat;
+}
+
+.serch
+{
+    background: url('../_img/src.png') center no-repeat;
+    height: 30px;
+    width: 30px;
+    position: fixed;
+    bottom: 3px;
+    left: 36px;
+}
+
+.serch:hover
+{
+   background: url('../_img/src_h.png') center no-repeat; 
+}
+
+.serch:active
+{
+    background: url('../_img/src.png') center no-repeat;
+}
+
+
+.payment_body
+{
+    background: url('../_img/pay_body') repeat
+}
+
+.reg_desk_back
+{
+    background-image: url('../_img/reg_desk.jpg');
+}
+
+.box
+{
+    background-color: #e9f4f6;
+    text-align: center;
+    font-family: monospace;
+    border: groove 1px #999999;
+    color: #3399ff;
+    border-radius: 5px;
+       
+}
+.box:focus
+{
+    color: #0000cc;
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    margin: 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Arial, sans-serif;
+
+    text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+    box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+
+    -webkit-transition: all 0.15s ease;
+    -moz-transition: all 0.15s ease;
+    -o-transition: all 0.15s ease;
+    -ms-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+.blue 
+{
+    color: #19667d;
+    background: #70c9e3;
+}
+
+.notification
+{
+    position: fixed;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    border-radius: 10px;
+    font-family: monospace;
+    background: url('../_img/black.png') repeat;
+}
