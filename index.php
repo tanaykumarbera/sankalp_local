@@ -35,7 +35,7 @@ if(isset($_REQUEST['sbtn']))
                     }
                     elseif ($_SESSION['event_id']==-1) 
                     {
-                        header('Location: team_reg.php');
+                        header('Location: event_reg.php');
                     }  
                     elseif ($_SESSION['event_id']>1) 
                     {
@@ -104,7 +104,7 @@ if(isset($_REQUEST['sbtn']))
        ?>
         <a href="logout.php"><div class="logout" title="Click to logout"></div></a> <a href="search.php"><div class="serch" title="Search Student or Team Details"></div></a> <div style="position: fixed; background: url('_img/black.png') repeat; bottom:5px; left: 69px;height: 20px; padding-top: 2px; color: white; font-family: Monospace; border-radius: 5px;">&nbsp;&nbsp;Logged in as <?php echo $_SESSION['op_name'];?>&nbsp;-© Tanay Kumar Bera, Tech-niché, Sankalp-2k13&nbsp;&nbsp;</div>
         <div style="background: url('_img/black.png') repeat; border-radius: 5px; padding-top: 5%; top: 40%; width: 98%; position: absolute; top: 40%; height: 200px;  color: white; font-family: monospace; font-weight: bold; font-size: 20px;" >
-            <center><a href="reg_desk.php"><img src="_img/r&p.png"/></a>&nbsp; &nbsp;<a href="team_reg.php"><img src="_img/tmr.png"/></a>&nbsp; &nbsp; <a href="event_desk.php"><img src="_img/ed.png"/></a>&nbsp; &nbsp; <a href="max_score.php"><img src="_img/wnr.png"/></a>&nbsp; &nbsp;</center>
+            <center><a href="reg_desk.php"><img src="_img/r&p.png"/></a>&nbsp; &nbsp;<a href="event_reg.php"><img src="_img/tmr.png"/></a>&nbsp; &nbsp; <a href="event_desk.php"><img src="_img/ed.png"/></a>&nbsp; &nbsp; <a href="max_score.php"><img src="_img/wnr.png"/></a>&nbsp; &nbsp;</center>
         </div>
       
         <?php

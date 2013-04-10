@@ -88,7 +88,18 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
          <a href="logout.php"><div class="logout" title="Click to logout"></div></a> <a href="search.php"><div class="serch" title="Search Student or Team Details"></div></a> <div style="position: fixed; background: url('_img/black.png') repeat; bottom:5px; left: 69px;height: 20px; padding-top: 2px; color: white; font-family: Monospace; border-radius: 5px;">&nbsp;&nbsp;Logged in as <?php echo $_SESSION['op_name'];?>&nbsp;-© Tanay Kumar Bera, Tech-niché, Sankalp-2k13&nbsp;&nbsp;</div>
         <div style="background: url('_img/black.png') repeat; width: 100%; margin-top: 20%; padding-top:  20px; padding-bottom: 20px; height: auto; color: white; ">
             <font face="Calibri"><b>
+                <?php if($_REQUEST['ut']==1)
+                {
+                ?>
+                
                 <center>||TEAM NAME: &nbsp;&nbsp;<?php echo $team_name;?>&nbsp;&nbsp;|&nbsp;&nbsp;TEAM ID: &nbsp;&nbsp;<?php echo $r;?>||</center>
+                <?php
+                }
+                else
+                {
+                    echo '<center>|| REGISTRATION SUCCESSFULL | ID: '.$r.' ||</center>';
+                }
+                ?>
                 
             <br/>
             <?php
@@ -109,7 +120,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                 }
             }
             ?>
-            <center><a href="team_reg.php"><input type="button" value="OK" class="button blue"/></a></center>
+            <center><a href="event_reg.php"><input type="button" value="OK" class="button blue"/></a></center>
             </b>
             </font>
         </div>
