@@ -6,7 +6,7 @@
           header('Location:index.php');
       }
  
-    if((isset($_REQUEST['eve']))&&(isset($_REQUEST['tm'])))
+    if((isset($_REQUEST['eve']))&&(isset($_REQUEST['tm']))&&(isset($_REQUEST['evrnd'])))
     {
         
         $team_id=$_REQUEST['tm'];
@@ -83,6 +83,7 @@
                         <input type="hidden" name="tm_id" value="<?php echo $team_id;?>"/>
                         <input type="hidden" name="tm_eve" value="<?php echo $t['event_performed'];?>"/>
                         <input type="hidden" name="ed" value="<?php echo $_REQUEST['eve'];?>"/>
+                        <input type="hidden" name="evrnd" value="<?php echo $_REQUEST['evrnd'];?>"/>
                         </form>
                     </div>
                     
@@ -107,7 +108,7 @@
                                }
                            else
                                {
-                                   if(confirm("YOU ARE ABOUT TO UPDATE TEAM <?php echo $t['team_name'].' [ '.$t['team_id'].' ] '; ?> with score "+a+" \n\nARE YOU SURE??")==1)
+                                   if(confirm("YOU ARE ABOUT TO UPDATE TEAM <?php echo $t['team_name'].' [ '.$t['team_id'].' ] '; ?> with score "+a+" for Round <?php echo $_REQUEST['evrnd'];?>\n\nARE YOU SURE??")==1)
                                    document.forms["scr_fm"].submit();
                                }
                        }

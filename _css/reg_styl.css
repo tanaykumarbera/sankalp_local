@@ -37,7 +37,10 @@ body
 .box:focus
 {
     color: #0000cc;
+    
 }
+
+
 
 .button {
     display: inline-block;

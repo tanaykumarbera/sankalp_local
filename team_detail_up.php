@@ -13,13 +13,13 @@
         $ev=$_REQUEST['tm_eve'];
         $tm=$_REQUEST['tm_id'];
         $ed=$_REQUEST['ed'];
-        if($ev==-1)
+        if($ev==-1||$ev==NULL)
         {
-            $ev='_'.$ed.'#'.mysql_real_escape_string($_REQUEST['score']);
+            $ev=$ed.'#'.mysql_real_escape_string($_REQUEST['score']).'#'.mysql_real_escape_string($_REQUEST['evrnd']);
         }
         else
         {
-            $ev=$ev.'_'.$ed.'#'.mysql_real_escape_string($_REQUEST['score']);
+            $ev=$ev.'_'.$ed.'#'.mysql_real_escape_string($_REQUEST['score']).'#'.mysql_real_escape_string($_REQUEST['evrnd']);
         }
         
         $sql="UPDATE team_registration SET event_performed='$ev' WHERE team_id='$tm'";

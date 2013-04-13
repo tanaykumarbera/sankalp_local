@@ -1,6 +1,8 @@
 <?php
   require_once 'dbconnection.php';
   
+  
+  
   if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']==1)||($_SESSION['event_id']==-1)))
       {
           header('Location:index.php');
@@ -28,6 +30,16 @@ if(($_SESSION['event_id']==0))
                     $bo=TRUE;
                     
                     $e_id=$_REQUEST['evid'];
+                    
+                    if(isset($_REQUEST['evrnd']))
+                        {
+                            $evrnd=$_REQUEST['evrnd'];
+                            $bor=TRUE;
+                        }
+                        else
+                        {
+                            $bor=FALSE;
+                        }
                 }
                 else
                 {
@@ -38,7 +50,29 @@ else
 {
     $bo=TRUE;
     $e_id=$_SESSION['event_id'];
+    
+    if(isset($_REQUEST['evrnd']))
+{
+    $evrnd=$_REQUEST['evrnd'];
+    $bor=TRUE;
 }
+else
+{
+    $bor=FALSE;
+}
+}
+
+
+if(isset($_REQUEST['evrnd']))
+{
+    $evrnd=$_REQUEST['evrnd'];
+    $bor=TRUE;
+}
+else
+{
+    $bor=FALSE;
+}
+
 
 if($bo)
 {
@@ -74,6 +108,8 @@ if($bo)
         <?php 
             if($bo)
             {
+                if($bor)
+                {
         ?>
        
         <div style="width: 100%; height: 100%;">
@@ -129,6 +165,27 @@ if($bo)
         <?php
             }
             else
+                {
+                
+            ?>
+                                <div style="position: fixed; background: url('_img/black.png') repeat; top: 5%; height: auto; padding: 2%; color: white; font-family: Monospace; border-radius: 5px;">
+                        EVENT ROUND: <br/><br/>
+                        <form id="noid" action="" method="POST">
+                        <?php
+                                   
+                               echo '<input type="radio" name="evrnd" value="1" onclick="'."document.forms['noid'].submit()".'"/>FIRST ROUND<br/><input type="radio" name="evrnd" value="2" onclick="'."document.forms['noid'].submit()".'"/>SECOND ROUND<br/><input type="hidden" name="evid" value="'.$_REQUEST['evid'].'/">';
+                                   
+                        ?>
+               
+            </form>
+        </div>
+                
+         <?php
+                }
+            
+            
+           }
+            else
            {
                 
                 $sq_admn="SELECT * FROM event_mapping";
@@ -161,7 +218,7 @@ if($bo)
     <script type="text/javascript">
         function ifrm(a)
         {
-            document.getElementById("ifm").innerHTML='<iframe style="background-color: transparent; border-radius: 5px; border-width: 0px; height: 350px; width: 550px;" src="team_detail.php?eve=<?php echo $e_id;?>&tm='+a+'"></iframe>';
+            document.getElementById("ifm").innerHTML='<iframe style="background-color: transparent; border-radius: 5px; border-width: 0px; height: 350px; width: 550px;" src="team_detail.php?eve=<?php echo $e_id;?>&tm='+a+'&evrnd=<?php echo $evrnd;?>"></iframe>';
         }
         
         
