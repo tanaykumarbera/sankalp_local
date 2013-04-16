@@ -130,37 +130,40 @@
             if($bool==3)
             {    
             ?>
-             <center><div  style="  position: fixed; top: 30px; background: url('_img/black.png') repeat;  color: lawngreen;  height: auto; width: 200px auto; padding: 20px; border-radius: 10px; ">Registration Successfull. Your Registeration ID:&nbsp;<?php echo 'SN'.$r;?>. Please use it at our Payment desk for further procedure.. </div></center>
+             <center><div  style="  position: fixed; top: 30px; background: url('_img/black.png') repeat;  color: lawngreen;  height: auto; width: auto; padding: 20px; border-radius: 10px; ">Registration Successfull. Your Registeration ID:&nbsp;<?php echo 'SN'.$r;?>. Please use it at our Payment desk for further procedure.. </div></center>
             <?php
             }
             ?>
             
         <form name="reg" action="" method="POST">
-            <font face="Calibri" color="white"><b>
-               <div id="table_div" style="width: 100%; height: 300px; float: left; margin-top: 100px;">
-                    
+            
+               <div id="table_div" style="width: 100%; height: 300px; float: left; margin-top: 100px; color: white; font-family: calibri;">
+                <font face="Calibri" color="white"><b>    
                 <center> Every participant has to register individually. Team registrations will be done
                     only after your Individual registration is over. Enter the necessary details below to get started.    </center>
-                <br/>
+                </b></font>
+                   <br/>
+                
                 <br/>
                 <table width="100%" height="65%">
+                   
                 <tr>
-                    <td width="50%">&nbsp;&nbsp;NAME</td>
+                    <td width="50%">&nbsp;&nbsp;<font face="Calibri" color="white"><b>NAME</b></font></td>
                     <td width="50%"><input type="text" name="u_name" class="box" size="30" <?php if(iset($_REQUEST['u_name'])&& ($bool!=3)) echo 'value="'.$_REQUEST['u_name'].'"'; ?>/></td>
                 </tr>
                 
                 <tr>
-                    <td> &nbsp;&nbsp;EMAIL</td>
+                    <td> &nbsp;&nbsp;<font face="Calibri" color="white"><b>EMAIL</b></font></td>
                     <td><input type="email" name="u_email" class="box" size="30" <?php if(iset($_REQUEST['u_email'])&& ($bool!=3)) echo 'value="'.$_REQUEST['u_email'].'"'; ?>/></td>
                 </tr>
                 
                 <tr>
-                    <td> &nbsp;&nbsp;Phone No.</td>
+                    <td> &nbsp;&nbsp;<font face="Calibri" color="white"><b>Phone No.</b></font></td>
                     <td><input type="text" name="u_no" class="box" <?php if(iset($_REQUEST['u_no'])&&($bool!=3)) echo 'value="'.$_REQUEST['u_no'].'"'; ?> min="10000000000"/></td>
                 </tr>
                 
                 <tr>
-                    <td> &nbsp;&nbsp;INSTITUTION</td>
+                    <td> &nbsp;&nbsp;<font face="Calibri" color="white"><b>INSTITUTION</b></font></td>
                     <td><select name="ins" class="box" style="width: 300px;">
                             <option value="0">------CHOOSE YOUR INSTITUTION--------</option>
                             <?php
@@ -180,7 +183,7 @@
              </table>
            </div>
                 <div id="event_div" style="padding-left: 10%;">
-                    
+                  <font face="Calibri" color="white"><b>
                     Choose your events below. 
                     <br/>
                           <?php

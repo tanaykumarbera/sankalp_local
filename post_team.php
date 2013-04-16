@@ -12,10 +12,12 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
         
         $events=$_REQUEST['events'];
         $team_name=mysql_real_escape_string($_REQUEST['team_name']);
-        
+        $ptct=0;
         if(isset($_REQUEST['member_1'])) 
         {
             $mem[1]=  mysql_real_escape_string($_REQUEST['member_1']);
+            $ptct++;
+            $pttk=$mem[1];
         }
         else
         {
@@ -25,6 +27,8 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
         if(isset($_REQUEST['member_2'])) 
         {
             $mem[2]=  mysql_real_escape_string($_REQUEST['member_2']);
+            $ptct++;
+            $pttk=$mem[2];
         }
         else
         {
@@ -34,6 +38,8 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
         if(isset($_REQUEST['member_3'])) 
         {
             $mem[4]=  mysql_real_escape_string($_REQUEST['member_4']);
+            $ptct++;
+            $pttk=$mem[4];
         }
         else
         {
@@ -43,6 +49,8 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
         if(isset($_REQUEST['member_5'])) 
         {
             $mem[5]=  mysql_real_escape_string($_REQUEST['member_5']);
+            $ptct++;
+            $pttk=$mem[5];
         }
         else
         {
@@ -52,6 +60,8 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
         if(isset($_REQUEST['member_3'])) 
         {
             $mem[3]=  mysql_real_escape_string($_REQUEST['member_3']);
+            $ptct++;
+            $pttk=$mem[3];
         }
         else
         {
@@ -63,6 +73,15 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
         foreach ($events as $i)
         {
             $evnt_ls=$evnt_ls."_".$i;
+        }
+        
+        
+        if($ptct==1)
+        {
+            $ptsql="SELECT users_name FROM registration WHERE registeration_id='$pttk' LIMIT 1";
+            $ptar= mysql_fetch_array(mysql_query($ptsql));
+            $team_name=$ptar['users_name'];
+            
         }
         $eve=  mysql_real_escape_string($evnt_ls);
         $sql_ins="INSERT INTO team_registration VALUES('','$r','$team_name','$eve','$mem[1]','$mem[2]','$mem[3]','$mem[4]','$mem[5]','-1')";

@@ -85,7 +85,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                               
                               
                               
-                              if($stu['users_payment']<250)
+                              if($stu['users_payment']<50)
                               {
                                   $mem[$i]=-9;
                                   
@@ -93,13 +93,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                                   
                               }
                               
-                              if(count($event_ls[$i])>2 && $stu['users_payment']<300)
-                              {
-                                  $mem[$i]=-5;
-                                  
-                                  continue;
-                                  
-                              }
+                             
                               
                               
                               if($stu['users_team']==-1)
@@ -469,7 +463,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                             }
                             else
                             {
-                                if($a['event_id']!=36&&$a['event_id']!=35&&$a['event_id']!=30)
+                                if($a['event_id']!=36&&$a['event_id']!=35&&$a['event_id']!=30&&$a['event_id']!=38)
                                     continue;
                             }
                             $newbool=TRUE;

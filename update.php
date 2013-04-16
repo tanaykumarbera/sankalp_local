@@ -124,10 +124,8 @@
                     val=0;
                     alert("FREAK! At least One event is a must. STUPID!!");
                 }
-            else if(e_no==1)
-            val=250;
             else
-            val= 300;
+            val= 50;
         
             val=val-<?php echo $stud['users_payment']; ?>;
             document.getElementById("p2").innerHTML="Amount to pay: &nbspRs "+val;
