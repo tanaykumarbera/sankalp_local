@@ -9,20 +9,19 @@
       }
 
         
-                function iselected($arr,$key)
-                {
-                    foreach ($arr as $i)
-                    {
-                        if($i==$key)
-                        {
-                            return TRUE;
-                        }
-                    }
+      function iskeypresent($arr, $key)
+      {
+          $ctar=  count($arr);
+          for($i=0; $i<$ctar; $i++)
+          {
+              if($arr[$i]==$key)
+                  return TRUE;
+          }
+          return FALSE;
+          
+      }
 
-                    return FALSE;
-                    
-                    
-                }
+
 if(($_SESSION['event_id']==0))
 {
                 if(isset($_REQUEST['evid']))
@@ -48,51 +47,39 @@ if(($_SESSION['event_id']==0))
 }
 else
 {
-    $bo=TRUE;
-    $e_id=$_SESSION['event_id'];
-    
-    if(isset($_REQUEST['evrnd']))
-{
-    $evrnd=$_REQUEST['evrnd'];
-    $bor=TRUE;
-}
-else
-{
-    $bor=FALSE;
-}
+        $bo=TRUE;
+        $e_id=$_SESSION['event_id'];
+
+        if(isset($_REQUEST['evrnd']))
+        {
+            $evrnd=$_REQUEST['evrnd'];
+            $bor=TRUE;
+        }
+        else
+        {
+            $bor=FALSE;
+        }
 }
 
-
-if(isset($_REQUEST['evrnd']))
+if($bo&&$bor)
 {
-    $evrnd=$_REQUEST['evrnd'];
-    $bor=TRUE;
-}
-else
-{
-    $bor=FALSE;
-}
-
-
-if($bo)
-{
-      $eve_ls=array();
+    $eve_ls=array();
       $i=0;
       $sql="SELECT * FROM team_registration ORDER BY reg_order";
       $res=  mysql_query($sql);
       while($a=  mysql_fetch_array($res))
       {
-          
-         // $eve_ls=  str_getcsv($a['event_list']);
           $temp=  str_getcsv($a['event_list'],'_');
-            if(iselected($temp, $e_id))
-            {
-                $eve_ls[$i]=array();
-                $eve_ls[$i]=$a;
-                $i++;
-            }       
+          
+         if(iskeypresent($temp,(int) $e_id))
+                {
+                      $eve_ls[$i]=array();
+                      $eve_ls[$i]=$a;
+                      $i++;
+                }    
           
       }
+   
 }     
 ?>
 
@@ -135,7 +122,11 @@ if($bo)
                     $temp=  str_getcsv($j['event_performed'],'_');
                     foreach ($temp as $t)
                     {
-                        $b=  iselected(str_getcsv($t,'#'),$e_id);
+                        $evarr=str_getcsv($t,'#');
+                        if($evrnd==1)
+                        $b=  ($evarr[0]==$e_id); //1st
+                        else if($evrnd==2)
+                        $b= ($evarr[0]==$e_id &&  $evarr[2]==1); //2nd
                         if($b) break;
                     }
                     

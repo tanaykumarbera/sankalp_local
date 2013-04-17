@@ -19,6 +19,8 @@
     }
    
     
+    if(isset($_REQUEST['evrnd']))
+    {
     $tm_count=0;
     //------------------------- teams-------------------------
     $sq1="SELECT team_id,event_performed FROM team_registration WHERE event_performed <> -1";
@@ -31,7 +33,7 @@
         {
             
             $w1=  str_getcsv($j,'#');
-            if($w1[0]==$even_id)
+            if($w1[0]==$even_id&&$w1[2]==$_REQUEST['evrnd'])
             {
                     $eve[$tm_count]=array();
                     
@@ -58,7 +60,7 @@
     }
     
 
-    
+    }
 
     
     
@@ -73,7 +75,19 @@
     <body style="background: url('_img/win_back.jpg') center no-repeat fixed;">
        
         <?php
-            if($admin)
+       
+        if($even_id==38||$even_id==34||$even_id==29) 
+            {
+                
+                echo '<div style="position: fixed; background: url('."'_img/black.png'".') repeat; top: 40%; left: 20%; height: auto; padding: 5%; color: white; font-family: Monospace; border-radius: 5px;"> This event has been decided to be performed on Hard paper!</div>';
+                die();
+            }
+        
+        
+        
+        
+        
+        if($admin)
             {
                 $sq_admn="SELECT * FROM event_mapping";
                 $r=  mysql_query($sq_admn);
@@ -98,9 +112,11 @@
            }
            else 
            {
+                if(isset($_REQUEST['evrnd']))
+                {
         ?>
         
-        
+       
         
         
         <?php
@@ -143,6 +159,23 @@
      }
      }
            }
+           else
+           {
+            ?>
+        <div style="position: fixed; background: url('_img/black.png') repeat; top: 5%; height: auto; padding: 2%; color: white; font-family: Monospace; border-radius: 5px;">
+             EVENT ROUND: <br/><br/>
+             <form id="noid" action="" method="POST">
+              <?php
+                echo '<input type="radio" name="evrnd" value="1" onclick="'."document.forms['noid'].submit()".'"/>FIRST ROUND<br/><input type="radio" name="evrnd" value="2" onclick="'."document.forms['noid'].submit()".'"/>SECOND ROUND<br/><input type="hidden" name="eeid" value="'.$even_id.'/">';
+              ?>
+               
+            </form>
+      </div>
+        <?php
+           }
+         }
+         
+         
      ?>
        
      
