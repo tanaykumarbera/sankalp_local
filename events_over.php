@@ -6,7 +6,13 @@
           header('Location:index.php');
       }
   
-  
+                function isrch($arr,$key1,$key2)
+                {
+                    if(($arr[0]==$key1)&&($arr[2]==$key2)) return TRUE;
+                    else  return FALSE;
+                }
+      
+      
       
       
                 function iselected($arr,$key)
@@ -25,6 +31,7 @@
                 }
 
       $e_id=$_REQUEST['eid'];
+      $evrnd=$_REQUEST['evrnd'];
       $tm_ls=array();
       $i=0;
       $sql="SELECT * FROM team_registration ORDER BY reg_order DESC";
@@ -37,7 +44,7 @@
                     foreach ($temp as $t)
                     {
                         $e=str_getcsv($t,'#');
-                        $b=  iselected($e,$e_id);
+                        $b=  isrch($e,$e_id,$evrnd);
                         if($b)
                         {
                             $tm_ls[$i]=array();
