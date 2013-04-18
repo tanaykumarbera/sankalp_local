@@ -115,69 +115,115 @@ if($bo&&$bor)
         </div>
         
         
-        <div style="position: absolute; right: 10%; margin: 10px auto; height: auto; top: auto; width: 300px; background: url('_img/black.png') repeat; border-radius: 0px;" >
+        <div style="position: absolute; right: 5%; margin: 10px auto; height: auto; top: auto; width: 500px; background: url('_img/black.png') repeat; border-radius: 0px;" >
            <?php
             $k=1;
             $et=TRUE;
-        
+            $tmtr=0;
             
             foreach($eve_ls as $j)
             {
                 $b=TRUE;
-                //echo $j['event_performed'];
+               
                 if($j['event_performed']!='-1'||$j['event_performed']!="-1"||$j['event_performed']!=-1)
                 {
                     $temp=  str_getcsv($j['event_performed'],'_');
+               
+                    
+                    $bb=FALSE;
                     foreach ($temp as $t)
                     {
                         $evarr=str_getcsv($t,'#');
                         
-                        if($evrnd==1||$evrnd=="1"||$evrnd=='1')
+                        if($evarr[0]==$e_id)
                         {
-                            if($evarr[0]==$e_id)
-                            {
-                                $b=TRUE; //1st
-                            }
-                            
-                        }
                         
-                        if($evrnd=='2'||$evrnd=="2"||$evrnd==2)
-                        {
-                            if($evarr[0]==$e_id &&  ($evarr[2]==2||$evarr[2]=="2"||$evarr[2]=='2')) //3rd
+                            if($evarr[2]==$evrnd)
                             {
-                                echo 'conti';
+
                                 continue 2;
-                            }
-                            if($evarr[0]==$e_id &&  ($evarr[2]==1||$evarr[2]=="1"||$evarr[2]=='1')) //2nd
-                            {
-                                $b=FALSE;
-                                break;
                             }
                             else
                             {
-                                $b=TRUE;
+                                if($evarr[2]<$evrnd)
+                                {
+                                    if($evarr[2]=($evrnd-1))
+                                    {
+                                        $bb=TRUE;
+                                        $tmscr=$evarr[1];
+                                        continue;
+                                    }
+                                  
+                                }
+                                
                             }
-                            
                         }
-                        if($b) break;
+                        
+                        $b=FALSE;
                     }
+                    
+                    if($bb)
+                        $b=FALSE;
                     
                 }
                 else
                 {
                    if($evrnd==1||$evrnd=="1"||$evrnd=='1')
                     $b=FALSE;
-                echo 'elseo';
                 }
                 
                 if(!$b)
                 {
                     $et=FALSE;
-                    echo '<a href="#" style="text-decoration: none;"><div id="'.$j['team_id'].'"style="position:relative; margin:10px; width:94%; height:30px; padding-top:5px; background: url('."'_img/white.png'".') repeat; border-radius: 3px;" onclick="ifrm('.$j['team_id'].');"><center><font face="Monospace"><b>['.$k++.']&nbsp;'.$j['team_name'].'&nbsp[ '.$j['team_id'].' ]</b></font></center></div></a>';   
+                    
+                   if($evrnd==1) echo '<a href="#" style="text-decoration: none;"><div id="'.$j['team_id'].'"style="position:relative; margin:10px; width:94%; height:30px; padding-top:5px; background: url('."'_img/white.png'".') repeat; border-radius: 3px;" onclick="ifrm('.$j['team_id'].');"><center><font face="Monospace"><b>['.$k++.']&nbsp;'.$j['team_name'].'&nbsp[ '.$j['team_id'].' ]</b></font></center></div></a>';   
+                   else
+                   {
+                       $tm[$tmtr]=array($j['team_id'],$j['team_name'],$tmscr);
+                       $tmtr++;
+                   }
                 }
                 
                // echo '<br/>'.$j['event_list'].'-----fgttft--------'.$j['team_id'];
             }
+            
+            
+            if($evrnd!=1)
+            {
+                for($i=0;$i<$tmtr;$i++)
+                {
+                    for($j=0;$j<$tmtr-$i-1; $j++)
+                    if($tm[$j+1][2]>$tm[$j][2])
+                    {
+                        $temp=$tm[$j+1];
+                        $tm[$j+1]=$tm[$j];
+                        $tm[$j]=$temp;
+                    }
+                }
+                
+                if(isset($_REQUEST['limtn']))
+                {
+                    if($_REQUEST['limit']<=0||($_REQUEST['limit']=="")) { $lim=900; }
+                    else $lim=(int) $_REQUEST['limit'];
+                        
+                }
+                else
+                {
+                    $lim=900;
+                }
+                
+                
+                echo '<div style="position: fixed; background: url('."'_img/black.png'".') repeat; top: 20px; left:400px; height: auto; padding: 2%; color: white; font-family: Monospace; border-radius: 5px;">Limit upto top:<br/><form name="lim" action="" method="POST"><input type="number" name="limit"/><input type="submit" name="limtn" value="go"/><input type="hidden" name="evrnd" value="'.$evrnd.'"/><input type="hidden" name="evid" value="'.$_REQUEST['evid'].'"/></form></div>'; 
+                $trel=0;
+                foreach ($tm as $j)
+                {
+                   
+                    if($trel<$lim) echo '<a href="#" style="text-decoration: none;"><div id="'.$j[0].'"style="position:relative; margin:10px; width:94%; height:30px; padding-top:5px; background: url('."'_img/white.png'".') repeat; border-radius: 3px;" onclick="ifrm('.$j[0].');"><center><font face="Monospace"><b>['.$k++.']&nbsp;'.$j[1].'&nbsp[ '.$j[0].' ]</b> prv score: '.$j[2].'</font></center></div></a>';   
+                    else echo '<a href="#" style="text-decoration: none;"><div id="'.$j[0].'"style="position:relative; margin:10px; width:94%; height:30px; padding-top:5px; background: url('."'_img/whired.png'".') repeat; border-radius: 3px;"><center><font face="Monospace"><b>['.$k++.']&nbsp;'.$j[1].'&nbsp[ '.$j[0].' ]</b> prv score: '.$j[2].'</font></center></div></a>';   
+                    $trel++;
+                }
+            }
+            
             if($et) echo '<a href="#" style="text-decoration: none;"><div style="position:relative; top: 30%; margin:10px; width:94%; height:50px; padding-top:5px; background: url('."'_img/white.png'".') repeat; border-radius: 3px; color: red;" onclick="window.top.location.href ='."'events_over.php?eid=".$e_id."'".'"><center><font face="Monospace"><b>&nbsp; NO MORE PARTICIPANTS REGISTERED.. Click here.&nbsp;</b></font></center></div></a>';
 
 //echo $eve_ls[0]['event_list'].'-------------'.$eve_ls[0]['team_id'];

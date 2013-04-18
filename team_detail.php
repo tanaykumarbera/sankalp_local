@@ -41,31 +41,31 @@
                     <div style="background: url('_img/white.png') repeat; height: 180px; width: auto; border-radius: 10px; margin-top: 60px; padding-bottom: 20px; padding-left: 20px;">
                         <br/><br/>&nbsp; &nbsp; &nbsp;<u>TEAM MEMBERS:</u><br/>
                     <?php
-                          if($t['member1']>10000000)
+                          if($t['member1']>2000)
                           {
                               $sq="SELECT users_name FROM registration WHERE registeration_id='".$t['member1']."'";
                               $n=mysql_fetch_array(mysql_query($sq));
                               echo '<br/>&nbsp; &nbsp;&nbsp; &nbsp;NAME:&nbsp;<font face="Century Gothic" size="3px" color="green">'.$n['users_name'].'&nbsp;&nbsp;&nbsp;&nbsp;</font> ID:&nbsp;[&nbsp;<font face="Calibri" color="green">'.$t['member1'].'</font>&nbsp;]';
                           }
-                          if($t['member2']>10000000)
+                          if($t['member2']>2000)
                           {
                               $sq="SELECT users_name FROM registration WHERE registeration_id='".$t['member2']."'";
                               $n=mysql_fetch_array(mysql_query($sq));
                               echo '<br/>&nbsp; &nbsp;&nbsp; &nbsp;NAME:&nbsp;<font face="Century Gothic" size="3px" color="green">'.$n['users_name'].'&nbsp;&nbsp;&nbsp;&nbsp;</font> ID:&nbsp;[&nbsp;<font face="Century Gothic" size="3px" color="green">'.$t['member2'].'</font>&nbsp;]';
                           }
-                          if($t['member3']>10000000)
+                          if($t['member3']>2000)
                           {
                               $sq="SELECT users_name FROM registration WHERE registeration_id='".$t['member3']."'";
                               $n=mysql_fetch_array(mysql_query($sq));
                               echo '<br/>&nbsp; &nbsp;&nbsp; &nbsp;NAME:&nbsp;<font face="Century Gothic" size="3px" color="green">'.$n['users_name'].'&nbsp;&nbsp;&nbsp;&nbsp;</font> ID:&nbsp;[&nbsp;<font face="Century Gothic" size="3px" color="green">'.$t['member3'].'</font>&nbsp;]';
                           }
-                          if($t['member4']>10000000)
+                          if($t['member4']>2000)
                           {
                               $sq="SELECT users_name FROM registration WHERE registeration_id='".$t['member4']."'";
                               $n=mysql_fetch_array(mysql_query($sq));
                               echo '<br/>&nbsp; &nbsp;&nbsp; &nbsp;NAME:&nbsp;<font face="Century Gothic" size="3px" color="green">'.$n['users_name'].'&nbsp;&nbsp;&nbsp;&nbsp;</font> ID:&nbsp;[&nbsp;<font face="Century Gothic" size="3px" color="green">'.$t['member4'].'</font>&nbsp;]';
                           }
-                          if($t['member5']>10000000)
+                          if($t['member5']>2000)
                           {
                               $sq="SELECT users_name FROM registration WHERE registeration_id='".$t['member5']."'";
                               $n=mysql_fetch_array(mysql_query($sq));
