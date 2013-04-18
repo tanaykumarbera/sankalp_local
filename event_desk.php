@@ -91,6 +91,10 @@ if($bo&&$bor)
         <title></title>
     </head>
     <body style="background: url('_img/bb.jpg') fixed;">
+        
+        
+        
+        
          <a href="logout.php"><div class="logout" title="Click to logout"></div></a> <a href="search.php"><div class="serch" title="Search Student or Team Details"></div></a> <div style="position: fixed; background: url('_img/black.png') repeat; bottom:5px; left: 69px;height: 20px; padding-top: 2px; color: white; font-family: Monospace; border-radius: 5px;">&nbsp;&nbsp;Logged in as <?php echo $_SESSION['op_name'];?>&nbsp;-© Tanay Kumar Bera, Tech-niché, Sankalp-2k13&nbsp;&nbsp;</div>
         <?php 
             if($bo)
@@ -101,10 +105,13 @@ if($bo&&$bor)
        
         <div style="width: 100%; height: 100%;">
       
-            <a href="#" style="text-decoration: none;"><div style="position: fixed; background: url('_img/black.png') repeat; top:24%; left: 10%; border-top-left-radius:5px; border-bottom-left-radius: 5px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; color: white; height: 30px; width: auto;padding-top: 5px;" onclick="window.top.location.href = 'events_over.php?eid=<?php echo $e_id;?>';"> &nbsp;&nbsp;&nbsp;Click here for Teams already performed&nbsp;&nbsp;&nbsp;&nbsp;</div></a>
+            <a href="#" style="text-decoration: none;"><div style="position: fixed; background: url('_img/black.png') repeat; top:24%; left: 10%; border-top-left-radius:5px; border-bottom-left-radius: 5px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; color: white; height: 30px; width: auto;padding-top: 5px;" onclick="window.top.location.href = 'events_over.php?eid=<?php echo $e_id.'&evrnd='.$evrnd;?>'">&nbsp;&nbsp;&nbsp;Click here for Teams already performed&nbsp;&nbsp;&nbsp;&nbsp;</div></a>
             <div id="ifm" style="position: fixed;  left: 10%; top: 30%; height: 350px; width: 550px; background: url('_img/black.png') repeat; border-radius: 5px;" >
             
         
+        </div>
+            <div style="position: fixed; background: url('_img/black.png') repeat; top: 20px; left: 100px; height: auto; padding: 2%; color: white; font-family: Monospace; border-radius: 5px;">
+            <br/>Participant List for ROUND <?php echo $evrnd;?><br/>
         </div>
         
         
@@ -117,23 +124,50 @@ if($bo&&$bor)
             foreach($eve_ls as $j)
             {
                 $b=TRUE;
-                if($j['event_performed']!=-1)
+                //echo $j['event_performed'];
+                if($j['event_performed']!='-1'||$j['event_performed']!="-1"||$j['event_performed']!=-1)
                 {
                     $temp=  str_getcsv($j['event_performed'],'_');
                     foreach ($temp as $t)
                     {
                         $evarr=str_getcsv($t,'#');
-                        if($evrnd==1)
-                        $b=  ($evarr[0]==$e_id); //1st
-                        else if($evrnd==2)
-                        $b= ($evarr[0]==$e_id &&  $evarr[2]==1); //2nd
+                        
+                        if($evrnd==1||$evrnd=="1"||$evrnd=='1')
+                        {
+                            if($evarr[0]==$e_id)
+                            {
+                                $b=TRUE; //1st
+                            }
+                            
+                        }
+                        
+                        if($evrnd=='2'||$evrnd=="2"||$evrnd==2)
+                        {
+                            if($evarr[0]==$e_id &&  ($evarr[2]==2||$evarr[2]=="2"||$evarr[2]=='2')) //3rd
+                            {
+                                echo 'conti';
+                                continue 2;
+                            }
+                            if($evarr[0]==$e_id &&  ($evarr[2]==1||$evarr[2]=="1"||$evarr[2]=='1')) //2nd
+                            {
+                                $b=FALSE;
+                                break;
+                            }
+                            else
+                            {
+                                $b=TRUE;
+                            }
+                            
+                        }
                         if($b) break;
                     }
                     
                 }
                 else
                 {
+                   if($evrnd==1||$evrnd=="1"||$evrnd=='1')
                     $b=FALSE;
+                echo 'elseo';
                 }
                 
                 if(!$b)
