@@ -53,7 +53,9 @@
                 $evnt_ls=$evnt_ls."_".$i;
             }
           $event_ls=mysql_real_escape_string($evnt_ls);
-          $sql_up="UPDATE registration SET users_name='$nam', users_mail='$mal', users_ins='$ins', users_no='$no', users_events='$event_ls', users_payment='$u_pay' WHERE registeration_id='$uid'";
+          date_default_timezone_set('Asia/Calcutta');
+	  $up_date=date("Y-m-d H:i:s");
+          $sql_up="UPDATE registration SET users_name='$nam', users_mail='$mal', users_ins='$ins', users_no='$no', users_events='$event_ls', users_payment='$u_pay', last_update='$up_date' WHERE registeration_id='$uid'";
           mysql_query($sql_up) or die(mysql_query(mysql_error()));
           $sq_op="SELECT amnt_clctd FROM operator WHERE op_id='".$_SESSION['op_id']."'";
           $op= mysql_fetch_array(mysql_query($sq_op));

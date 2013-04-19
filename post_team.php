@@ -134,7 +134,9 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                     else $t=$t."_".$r;
                     $tt=mysql_real_escape_string($t);
                     
-                    $s="UPDATE registration SET users_team='$tt' WHERE registeration_id='$mem[$i]'";
+                    date_default_timezone_set('Asia/Calcutta');
+                    $up_date=date("Y-m-d H:i:s");
+                    $s="UPDATE registration SET users_team='$tt',last_update='$up_date' WHERE registeration_id='$mem[$i]'";
                     mysql_query($s) or die(mysql_error());
                 }
             }
