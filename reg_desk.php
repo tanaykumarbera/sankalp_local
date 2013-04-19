@@ -22,14 +22,16 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=1)&&($_SESSION['event_
     <body style="background: url('_img/reg_bck.gif') repeat fixed;">
          <a href="logout.php"><div class="logout" title="Click to logout"></div></a> <a href="search.php"><div class="serch" title="Search Student or Team Details"></div></a> <div style="position: fixed; background: url('_img/black.png') repeat; bottom:5px; left: 69px;height: 20px; padding-top: 2px; color: white; font-family: Monospace; border-radius: 5px;">&nbsp;&nbsp;Logged in as <?php echo $_SESSION['op_name'];?>&nbsp;-© Tanay Kumar Bera, Tech-niché, Sankalp-2k13&nbsp;&nbsp;</div>
         
-        <div style="width: 1000px; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; height: 700px;">
-            <div style="width: 230px; height: 700px; float: left; background: url('_img/reg_left.jpg'); border-radius: 10px;">
+        <div style="width: 1100px; margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto; height: 700px;">
+            <div style="width: 300px; height: 700px; float: left; background: url('_img/reg_left.jpg'); border-radius: 10px;">
                 <form onsubmit="javascript:srch();return false;">
                     <input type="text" id="regid" style="margin-left: 20px; margin-top: 100px; border-radius: 5px;" onkeypress="ckckk(event)" onclick="def()"/>&nbsp;&nbsp;&nbsp;
                 <input type="submit" class="button blue" value="GO" style="padding: 0 5px; margin: 0; border-radius: 50px;" onclick="srch()"/>
                 </form>
-                <a href="search.php"><input type="button" class="button blue" value="SEARCH A STUDENT OR TEAM" style="border-radius: 5px; alignment-adjust: central; position: absolute; top: 50px;"/></a>
-                
+                <a href="search.php" target="_blank"><input type="button" class="button blue" value="SEARCH A STUDENT OR TEAM HERE" style="border-radius: 5px; alignment-adjust: central; position: absolute; top: 50px;"/></a>
+                <div style="position: relative; margin: 40px auto; height: 500px; width: 290px; background: transparent;">
+                    <iframe id="nammenu" src="" style="width: 100%; height: 100%; border-width: 0px; border-radius: 5px; background: transparent;" > </iframe>
+                </div>
             </div>
             <div id="isearch" style="width: 760px; height: 700px; float: left; margin-left: 10px; background: url('_img/reg_right.jpg'); border-radius: 10px;" >
                 
@@ -44,13 +46,25 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=1)&&($_SESSION['event_
         {
             var a=document.getElementById("regid").value;
             if((a>2000)&&(a<9999))
-                 document.getElementById("regid").style["background-color"]="#99ff00";   
+                 {
+                     document.getElementById("regid").style["background-color"]="#99ff00";
+                     document.getElementById("nammenu").src="";
+                 }   
              else
-                 document.getElementById("regid").style["background-color"]="#ff6666";   
+                 {
+                    document.getElementById("regid").style["background-color"]="#ff6666";   
+                    document.getElementById("nammenu").src="regpart_name.php?sr="+a;
+                 }
              
             document.getElementById("isearch").innerHTML='<iframe src="update.php?uid='+a+'" style="position: relative; border-width: 0px; width: 100%; height: 100%;  border-radius: 10px; background-color: transparent;"></iframe>';
             
         }
+        
+        function asrch(memid)
+        {
+            document.getElementById("isearch").innerHTML='<iframe src="update.php?uid='+memid+'" style="position: relative; border-width: 0px; width: 100%; height: 100%;  border-radius: 10px; background-color: transparent;"></iframe>';
+        }
+        
         
         function def()
         {
