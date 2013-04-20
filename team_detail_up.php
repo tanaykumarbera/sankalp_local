@@ -10,19 +10,20 @@
  
     if(isset($_REQUEST['tsbtn']))
     {
-        $ev=$_REQUEST['tm_eve'];
-        $tm=$_REQUEST['tm_id'];
-        $ed=$_REQUEST['ed'];
+        $ev=stripslashes($_REQUEST['tm_eve']);
+        $tm=stripslashes($_REQUEST['tm_id']);
+        $ed=stripslashes($_REQUEST['ed']);
         if($ev==-1||$ev==NULL)
         {
-            $ev=$ed.'#'.mysql_real_escape_string($_REQUEST['score']).'#'.mysql_real_escape_string($_REQUEST['evrnd']);
+            $ev=$ed."#".stripslashes($_REQUEST['score'])."#".stripslashes($_REQUEST['evrnd']);
         }
         else
         {
-            $ev=$ev.'_'.$ed.'#'.mysql_real_escape_string($_REQUEST['score']).'#'.mysql_real_escape_string($_REQUEST['evrnd']);
+            $ev=$ev.'_'.$ed."#".stripslashes($_REQUEST['score'])."#".stripslashes($_REQUEST['evrnd']);
         }
         
         $sql="UPDATE team_registration SET event_performed='$ev' WHERE team_id='$tm'";
+       
         mysql_query($sql) or die(mysql_error());
         
     }
@@ -42,7 +43,7 @@
     <body style="background-color: transparent; padding-top: 20%; color: white">
       
     <center> <b>TEAM &nbsp; <?php echo $tm;?>&nbsp; SCORED <?php echo $_REQUEST['score'];?></b></center>
-    <center><input type="button" value="OKAY" class="button blue" onclick="window.top.location.href ='event_desk.php'" /></center>
+    <center><input type="button" value="OKAY" class="button blue" onclick="window.top.location.href ='event_desk.php?evrnd=<?php echo stripslashes($_REQUEST['evrnd']);?>'" /></center>
     </body>
    
 </html>

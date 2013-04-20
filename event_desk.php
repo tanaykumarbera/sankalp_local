@@ -50,8 +50,10 @@ else
         $bo=TRUE;
         $e_id=$_SESSION['event_id'];
 
+        
         if(isset($_REQUEST['evrnd']))
         {
+        
             $evrnd=$_REQUEST['evrnd'];
             $bor=TRUE;
         }
@@ -101,17 +103,22 @@ if($bo&&$bor)
             {
                 if($bor)
                 {
+                    
+                    $sqleve="SELECT event_name FROM event_mapping WHERE event_id LIKE '$e_id'";
+                    $reve=  mysql_query($sqleve);
+                    $aar=  mysql_fetch_array($reve);
+                    $evnam=$aar['event_name'];
         ?>
        
         <div style="width: 100%; height: 100%;">
       
-            <a href="#" style="text-decoration: none;"><div style="position: fixed; background: url('_img/black.png') repeat; top:24%; left: 10%; border-top-left-radius:5px; border-bottom-left-radius: 5px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; color: white; height: 30px; width: auto;padding-top: 5px;" onclick="window.top.location.href = 'events_over.php?eid=<?php echo $e_id.'&evrnd='.$evrnd;?>'">&nbsp;&nbsp;&nbsp;Click here for Teams already performed&nbsp;&nbsp;&nbsp;&nbsp;</div></a>
+            <a href="#" style="text-decoration: none;"><div style="position: fixed; background: url('_img/black.png') repeat; top:24%; left: 10%; border-top-left-radius:5px; border-bottom-left-radius: 5px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; color: white; height: 30px; width: auto;padding-top: 5px;" onclick="window.top.location.href = 'events_over.php?eid=<?php echo stripslashes(stripslashes($e_id)."&evrnd=".stripslashes($evrnd));?>'">&nbsp;&nbsp;&nbsp;Click here for Teams already performed&nbsp;&nbsp;&nbsp;&nbsp;</div></a>
             <div id="ifm" style="position: fixed;  left: 10%; top: 30%; height: 350px; width: 550px; background: url('_img/black.png') repeat; border-radius: 5px;" >
             
         
         </div>
             <div style="position: fixed; background: url('_img/black.png') repeat; top: 20px; left: 100px; height: auto; padding: 2%; color: white; font-family: Monospace; border-radius: 5px;">
-            <br/>Participant List for ROUND <?php echo $evrnd;?><br/>
+                <br/>Participant List for ROUND <?php echo $evrnd;?><br/><?php echo $evnam;?>
         </div>
         
         

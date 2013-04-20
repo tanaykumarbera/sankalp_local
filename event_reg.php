@@ -1,6 +1,6 @@
 <?php
 require_once 'dbconnection.php';
-
+$owncollege = TRUE;
 if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event_id']!=0)))
       {
           header('Location:index.php');
@@ -67,7 +67,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                             {
                               $event_reg[$i]=array();
                               $users_team[$i]=array();
-                              $sq_eve="SELECT users_events, users_team, users_payment FROM registration WHERE registeration_id='$mem[$i]'";
+                              $sq_eve="SELECT users_events, users_team, users_payment, users_ins FROM registration WHERE registeration_id='$mem[$i]'";
                               $res=  mysql_query($sq_eve);
                               if((mysql_num_rows($res)==0))
                               {
@@ -85,7 +85,23 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                               
                               
                               
-                              if($stu['users_payment']<50)
+                              $sq_chkk="SELECT clg_id FROM college_mapping WHERE clg_name LIKE '%".$stu['users_ins']."%' LIMIT 1";
+                             
+                              $sq_chkkr=  mysql_query($sq_chkk);
+                              if(mysql_num_rows($sq_chkkr)!=0)
+                              {
+                             
+                                  $tmar=  mysql_fetch_array($sq_chkkr);
+                                  if($tmar['clg_id']!=92)
+                                  {
+                             
+                                      $owncollege=FALSE;
+                                  }
+                              }
+                             
+                              
+                              
+                              if($stu['users_payment']<20)
                               {
                                   $mem[$i]=-9;
                                   
@@ -162,7 +178,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                 <?php
                     if(isset($_REQUEST['mem_sbtn']))
                     {
-                     
+                        
                 ?>
                  <td>
                         events :
@@ -463,7 +479,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
                             }
                             else
                             {
-                                if($a['event_id']!=36&&$a['event_id']!=35&&$a['event_id']!=30&&$a['event_id']!=38)
+                                if(($a['event_id']!=36&&$a['event_id']!=30&&$a['event_id']!=38&&$a['event_id']!=31)||$a['event_id']==35)
                                     continue;
                             }
                             $newbool=TRUE;
@@ -493,7 +509,8 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
     </body>
     
     <script>
-        var ev = 0
+        var ev = 0;
+        var ownc=<?php if($owncollege) echo '0'; else echo '1';?>;
         function amt_cal()
         {
             var amt = 0;
@@ -505,10 +522,16 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
             {
                 if((inputs[i].type=="checkbox")&&(inputs[i].checked))
                     {
-                        amt = amt + parseInt(document.getElementById(("ev" + inputs[i].value)).value); 
+                        if(ownc==1)
+                            amt = amt + parseInt(document.getElementById(("ev" + inputs[i].value)).value); 
+                        else
+                            amt=0;
+                        
                         ev++;
                     }
             }
+            
+           
             
             document.getElementById("totamt").innerHTML="Total amount for "+ev+" events: Rs.&nbsp"+ amt;
             

@@ -68,7 +68,23 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
             $mem[3]=-1;
         }
         
-        $r= rand(1000,9999);
+        $rbol=FALSE;
+        do
+        {
+            $r= rand(1000,9999);
+            $rsq="SELECT reg_order FROM team_registration WHERE team_id='$r' LIMIT 1";
+            $rsqr=  mysql_query($rsq);
+            if(mysql_num_rows($rsqr)>0)
+            {
+                $rbol=TRUE;
+            }
+            else
+            {
+                $rbol=FALSE;
+            }
+            
+        }while ($rbol);
+        
         $evnt_ls="";
         foreach ($events as $i)
         {
@@ -124,6 +140,7 @@ if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=-1)&&($_SESSION['event
             <?php
             for($i=1;$i<=5;$i++)
             {
+                
                 if($mem[$i]!=-1)
                 {
                     $s="SELECT users_name, users_team FROM registration WHERE registeration_id='$mem[$i]'";

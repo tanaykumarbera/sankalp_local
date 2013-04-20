@@ -80,10 +80,10 @@
                         <form name="su" id="scr_fm" action="team_detail_up.php" method="POST" onsubmit="javascript:sub();return false;">
                         <input type="text" name="score" id="scr" class="box"/>
                         <input type="submit" name="tsbtn" value="update" class="button blue"/>
-                        <input type="hidden" name="tm_id" value="<?php echo $team_id;?>"/>
-                        <input type="hidden" name="tm_eve" value="<?php echo $t['event_performed'];?>"/>
-                        <input type="hidden" name="ed" value="<?php echo $_REQUEST['eve'];?>"/>
-                        <input type="hidden" name="evrnd" value="<?php echo $_REQUEST['evrnd'];?>"/>
+                        <input type="hidden" name="tm_id" value="<?php echo stripcslashes($team_id);?>"/>
+                        <input type="hidden" name="tm_eve" value="<?php echo stripcslashes($t['event_performed']);?>"/>
+                        <input type="hidden" name="ed" value="<?php echo stripcslashes($_REQUEST['eve']);?>"/>
+                        <input type="hidden" name="evrnd" value="<?php echo stripcslashes($_REQUEST['evrnd']);?>"/>
                         </form>
                     </div>
                     

@@ -1,5 +1,8 @@
 <?php
       require_once 'dbconnection.php';
+      
+      $owncollege=TRUE;
+      
       if(!(isset($_SESSION['op_id']))||(($_SESSION['event_id']!=1)&&($_SESSION['event_id']!=0)))
       {
           header('Location:index.php');
@@ -80,6 +83,21 @@
       }
       $stud=  mysql_fetch_array($res);
       $events=  str_getcsv($stud['users_events'], '_');
+      
+      $sq_chkk="SELECT clg_id FROM college_mapping WHERE clg_name LIKE '%".$stud['users_ins']."%' LIMIT 1";
+                             
+      $sq_chkkr=  mysql_query($sq_chkk);
+      if(mysql_num_rows($sq_chkkr)!=0)
+       {
+                            
+            $tmar=  mysql_fetch_array($sq_chkkr);
+            if($tmar['clg_id']!=92)
+            {
+                        
+               $owncollege=FALSE;
+            }
+        }
+      
       }
  
       else
@@ -124,10 +142,10 @@
             if(e_no==0)
                 {
                     val=0;
-                    alert("FREAK! At least One event is a must. STUPID!!");
+                    alert("At least One event required. STUPID!!");
                 }
             else
-            val= 50;
+            val= <?php if($owncollege) echo 30; else echo 50;?>;
         
             val=val-<?php echo $stud['users_payment']; ?>;
             document.getElementById("p2").innerHTML="Amount to pay: &nbspRs "+val;

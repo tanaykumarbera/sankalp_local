@@ -153,11 +153,11 @@ require_once 'dbconnection.php';
         echo 'TEAM ID:&nbsp;'.$t['team_id'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEAM NAME:&nbsp;'.$t['team_name'].'<br/>';
         echo '<br/> TEAM MEMBERS:';
          
-         if($t['member1']>10000000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member1']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member1'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
-         if($t['member2']>10000000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member2']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member2'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
-         if($t['member3']>10000000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member3']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member3'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
-         if($t['member4']>10000000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member4']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member4'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
-         if($t['member5']>10000000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member5']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member5'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
+         if($t['member1']>1000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member1']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member1'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
+         if($t['member2']>1000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member2']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member2'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
+         if($t['member3']>1000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member3']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member3'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
+         if($t['member4']>1000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member4']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member4'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
+         if($t['member5']>1000)             {   $s_m="SELECT users_name FROM registration WHERE registeration_id='".$t['member5']."'";  $u=  mysql_fetch_array(mysql_query($s_m)); echo '<br/>||'.$t['member5'].'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$u['users_name']; }
          
          
         echo '<br/><br/>TEAM EVENTS:';
