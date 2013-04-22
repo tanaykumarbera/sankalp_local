@@ -97,6 +97,10 @@
                $owncollege=FALSE;
             }
         }
+		else
+		{
+			$owncollege=FALSE;
+		}
       
       }
  
@@ -145,7 +149,7 @@
                     alert("At least One event required. STUPID!!");
                 }
             else
-            val= <?php if($owncollege) echo 30; else echo 50;?>;
+            val= <?php if($owncollege) echo 30; else echo 100;?>;
         
             val=val-<?php echo $stud['users_payment']; ?>;
             document.getElementById("p2").innerHTML="Amount to pay: &nbspRs "+val;
